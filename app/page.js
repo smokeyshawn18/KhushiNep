@@ -61,7 +61,6 @@ export default function HomePage() {
       <div className="w-full flex flex-col items-center gap-12 px-6 py-16">
         {/* Heading */}
 
-        {/* Why Choose Us Section */}
         <section className="w-full max-w-3xl bg-sky-600 text-white rounded-2xl p-8 shadow-xl">
           <h2 className="text-3xl font-bold mb-4">Why Choose Us</h2>
           <ul className="list-disc list-inside space-y-3 text-lg font-semibold">
