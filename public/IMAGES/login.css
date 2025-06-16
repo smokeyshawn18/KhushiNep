@@ -1,0 +1,85 @@
+body {
+  background-color: #1f1f1f;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+}
+
+.box {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 10px 2000px;
+  padding: 40px;
+  width: 400px;
+}
+
+.title {
+  color: #333;
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 40px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+input[type="text"],
+input[type="password"] {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1rem;
+  padding: 10px;
+  width: 100%;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus {
+  outline: none;
+  box-shadow: 0 0 5px 1px #555;
+}
+
+button[type="submit"] {
+  background-color: #e53e3e;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 1rem;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #d33030;
+}
+
+.forgot-password {
+  font-size: 0.8rem;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.forgot-password a {
+  color: #333;
+  text-decoration: none;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
+}
