@@ -1,12 +1,6 @@
 import { supabase } from "@/utils/supabaseClient";
 
 export async function POST(req) {
-  console.log("Supabase URL:", process.env.NEXT_PUBLIC_SUPABASE_URL);
-  console.log(
-    "Supabase Key:",
-    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ? "Defined" : "Undefined"
-  );
-
   try {
     const { name, email, phone, message } = await req.json();
 
