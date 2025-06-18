@@ -37,14 +37,14 @@ const Navbar = ({ translations }) => {
       {/* Top Contact Bar */}
       <div className="bg-sky-700 text-white font-bold text-xs md:text-sm">
         <div className="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center">
-          <a
-            href="tel:+9779812345678"
+          <Link
+            href="tel:+977 1-5926262"
             className="flex items-center gap-2 hover:text-blue-300 transition-colors font-medium"
           >
             <Phone size={14} className="text-blue-300" />
             <span className="hidden xs:inline">+977-1-5926262</span>
-            <span className="xs:hidden">Call Us</span>
-          </a>
+            <span className="xs:hidden">Click to Call</span>
+          </Link>
           <div className="flex items-center gap-2 text-gray-100 tracking-wide">
             <MapPin size={14} className="text-blue-300" />
             <span className="hidden sm:inline">
@@ -101,8 +101,8 @@ const Navbar = ({ translations }) => {
                     href={item.href}
                     className={`relative px-4 py-2 rounded-lg font-medium transition-all duration-200 group ${
                       pathname === item.href
-                        ? "text-blue-600 bg-blue-50"
-                        : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                        ? "text-sky-800 bg-blue-50"
+                        : "text-gray-700 hover:text-slate-900 hover:bg-gray-50"
                     }`}
                   >
                     {item.name}
