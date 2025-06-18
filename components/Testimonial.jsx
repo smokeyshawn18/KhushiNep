@@ -1,73 +1,78 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
-import testimonials from "@/data/testimonial";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import testimonials from "@/data/testimonial";
 
-const Testimonial = () => {
+export default function Testimonial() {
   const [index, setIndex] = useState(0);
   const total = testimonials.length;
-
-  const handlePrev = () => {
-    setIndex((prev) => (prev - 1 + total) % total);
-  };
-
-  const handleNext = () => {
-    setIndex((prev) => (prev + 1) % total);
-  };
-
   const current = testimonials[index];
 
+  const handlePrev = () => setIndex((prev) => (prev - 1 + total) % total);
+  const handleNext = () => setIndex((prev) => (prev + 1) % total);
+
   return (
-    <section className="w-full px-4 py-12 bg-sky-500 text-white flex flex-col items-center">
-      <h2 className="text-3xl md:text-4xl font-bold text-center mb-10">
-        Student Testimonials
-      </h2>
+    <section className="w-full px-4 py-20 bg-gradient-to-br from-sky-100 via-sky-200 to-sky-300">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-3xl sm:text-4xl font-bold text-sky-900 text-center mb-16">
+          What Our Students Say
+        </h2>
 
-      <div className="relative w-full max-w-xl mx-auto flex flex-col items-center">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={current.id}
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -30 }}
-            transition={{ duration: 0.5 }}
-            className="bg-white/10 backdrop-blur-md p-6 rounded-xl shadow-lg text-center w-full"
-          >
-            <div className="flex flex-col items-center space-y-4">
-              <Image
-                src={current.image}
-                alt={current.name}
-                width={80}
-                height={80}
-                className="rounded-full border-2 border-white"
-              />
-              <h3 className="text-xl font-bold">{current.name}</h3>
-              <p className="text-white/90 text-base">{current.message}</p>
-            </div>
-          </motion.div>
-        </AnimatePresence>
+        <div className="relative flex flex-col items-center">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={current.id}
+              initial={{ opacity: 0, y: -60 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 60 }}
+              transition={{ duration: 0.6, ease: "easeOut" }}
+              className="w-full max-w-3xl bg-white p-6 sm:p-10 rounded-3xl shadow-xl text-gray-800 relative z-10"
+            >
+              {/* Quotation Icon */}
+              <div className="absolute -top-6 left-6 bg-sky-400 p-3 rounded-full shadow-md">
+                <Quote className="text-white w-6 h-6" />
+              </div>
 
-        {/* Navigation Buttons */}
-        <div className="flex justify-between w-full mt-8 px-4">
-          <button
-            onClick={handlePrev}
-            className="bg-white/20 hover:bg-white/30 transition-all p-3 rounded-full"
-          >
-            <ChevronLeft className="text-white w-6 h-6" />
-          </button>
-          <button
-            onClick={handleNext}
-            className="bg-white/20 hover:bg-white/30 transition-all p-3 rounded-full"
-          >
-            <ChevronRight className="text-white w-6 h-6" />
-          </button>
+              <div className="flex flex-col sm:flex-row items-center gap-6">
+                <Image
+                  src={current.image}
+                  alt={current.name}
+                  width={90}
+                  height={90}
+                  className="rounded-full  object-cover shadow-md"
+                />
+                <div className="text-center sm:text-left">
+                  <h3 className="text-xl font-semibold text-sky-800">
+                    {current.name}
+                  </h3>
+                  <p className="mt-2 text-gray-700 leading-relaxed text-base sm:text-lg">
+                    {current.message}
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Navigation */}
+          <div className="flex items-center gap-6 mt-10">
+            <button
+              onClick={handlePrev}
+              className="bg-sky-600 hover:bg-sky-700 text-white p-3 rounded-full shadow-md transition-all"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+            <button
+              onClick={handleNext}
+              className="bg-sky-600 hover:bg-sky-700 text-white p-3 rounded-full shadow-md transition-all"
+            >
+              <ChevronRight className="w-5 h-5" />
+            </button>
+          </div>
         </div>
       </div>
     </section>
   );
-};
-
-export default Testimonial;
+}

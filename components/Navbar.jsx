@@ -77,9 +77,9 @@ const Navbar = ({ translations }) => {
                 <Image
                   src="/IMAGES/LOGO.jpg"
                   alt="Logo"
-                  width={42}
-                  height={42}
-                  className="rounded-full  shadow-md group-hover:scale-105 transition-transform duration-200"
+                  width={52}
+                  height={52}
+                  className="rounded-full shadow-md group-hover:scale-105 transition-transform duration-200"
                 />
                 <div className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 rounded-full border-2 border-white animate-pulse" />
               </div>
@@ -87,7 +87,7 @@ const Navbar = ({ translations }) => {
                 <span className="text-base md:text-lg font-bold text-gray-800 leading-tight">
                   Khushi Edu
                 </span>
-                <span className="text-xs text-gray-500 font-medium -mt-0.5">
+                <span className="text-xs text-gray-700 font-semibold -mt-0.5">
                   Consultancy Pvt. Ltd
                 </span>
               </div>
@@ -117,7 +117,7 @@ const Navbar = ({ translations }) => {
             {/* Mobile Menu Button */}
             <button
               onClick={toggleMenu}
-              className="xl:hidden relative p-3 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-lg hover:shadow-xl transition-all duration-200 active:scale-95"
+              className="xl:hidden relative p-3 rounded-2xl bg-gradient-to-r from-sky-800 to-sky-900 text-white shadow-lg hover:shadow-xl transition-all duration-200 active:scale-95"
               aria-label="Toggle mobile menu"
             >
               <div className="w-5 h-5 flex items-center justify-center">
