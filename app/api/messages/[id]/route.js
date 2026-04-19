@@ -1,21 +1,25 @@
-import { query } from "@/utils/neonClient";
+import { db } from "@/lib/db";
+import { messages } from "@/lib/schema";
+import { eq } from "drizzle-orm";
 
 export async function DELETE(req, { params }) {
   try {
-    const { id } = await params;
+    const { id } = params;
 
-    await query("DELETE FROM messages WHERE id = $1", [id]);
+    await db.delete(messages).where(eq(messages.id, Number(id)));
 
     return new Response(
       JSON.stringify({ message: "Message deleted successfully" }),
-      {
-        status: 200,
-      },
+      { status: 200 },
     );
   } catch (error) {
     console.error("Database delete error:", error);
+
     return new Response(
-      JSON.stringify({ message: `Failed to delete message: ${error.message}` }),
+      JSON.stringify({
+        message: "Failed to delete message",
+        error: error.message,
+      }),
       { status: 500 },
     );
   }

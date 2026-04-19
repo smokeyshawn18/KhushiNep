@@ -1,19 +1,8 @@
-import { query } from "@/utils/neonClient";
+import { db } from "@/lib/db";
+import { messages } from "@/lib/schema";
 
-export async function GET(req) {
-  try {
-    const messages = await query(
-      "SELECT * FROM messages ORDER BY created_at DESC",
-    );
+export async function GET() {
+  const data = await db.select().from(messages);
 
-    return new Response(JSON.stringify(messages), {
-      status: 200,
-    });
-  } catch (error) {
-    console.error("Database fetch error:", error);
-    return new Response(
-      JSON.stringify({ message: `Failed to fetch messages: ${error.message}` }),
-      { status: 500 },
-    );
-  }
+  return new Response(JSON.stringify(data));
 }
