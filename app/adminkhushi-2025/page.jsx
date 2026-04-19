@@ -6,8 +6,6 @@ import Link from "next/link";
 import { Trash2 } from "lucide-react";
 import { toast } from "sonner";
 
-import { supabase } from "@/utils/supabaseClient";
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import {
@@ -129,11 +127,9 @@ export default function AdminPage() {
   const fetchMessages = useCallback(async () => {
     setLoading(true);
     try {
-      const { data, error } = await supabase
-        .from("messages")
-        .select("*")
-        .order("created_at", { ascending: false });
-      if (error) throw error;
+      const response = await fetch("/api/messages");
+      if (!response.ok) throw new Error("Failed to fetch messages");
+      const data = await response.json();
       setMessages(data || []);
     } catch {
       toast.error("Failed to load messages");
@@ -152,7 +148,7 @@ export default function AdminPage() {
       localStorage.setItem("admin-auth", "true");
       localStorage.setItem(
         "admin-auth-expiry",
-        (Date.now() + 30 * 60 * 1000).toString()
+        (Date.now() + 30 * 60 * 1000).toString(),
       );
       toast.success("Logged in");
       setPwd("");
@@ -171,8 +167,10 @@ export default function AdminPage() {
 
   const deleteMessage = async (id) => {
     try {
-      const { error } = await supabase.from("messages").delete().eq("id", id);
-      if (error) throw error;
+      const response = await fetch(`/api/messages/${id}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) throw new Error("Failed to delete message");
       setMessages((prev) => prev.filter((m) => m.id !== id));
       toast.success("Message deleted");
     } catch {

@@ -1,28 +1,32 @@
-import { supabase } from "@/utils/supabaseClient";
+import { query } from "@/utils/neonClient";
 
 export async function POST(req) {
+  const allowedOrigins = [
+    "http://localhost:3001",
+    "https://khushinep.vercel.app",
+  ];
+  const origin = req.headers.get("origin");
+  if (!allowedOrigins.includes(origin)) {
+    return new Response(JSON.stringify({ message: "Invalid origin" }), {
+      status: 403,
+    });
+  }
   try {
     const { name, email, phone, message } = await req.json();
 
-    const { error } = await supabase
-      .from("messages")
-      .insert({ name, email, phone, message, created_at: new Date() });
-
-    if (error) {
-      console.error("Supabase insert error:", error);
-      return new Response(
-        JSON.stringify({ message: `Submission failed: ${error.message}` }),
-        { status: 500 }
-      );
-    }
+    await query(
+      "INSERT INTO messages (name, email, phone, message, created_at) VALUES ($1, $2, $3, $4, $5)",
+      [name, email, phone, message, new Date()],
+    );
 
     return new Response(JSON.stringify({ message: "Message sent!" }), {
       status: 200,
     });
   } catch (error) {
-    console.error("Unexpected error:", error);
-    return new Response(JSON.stringify({ message: "Internal Server Error" }), {
-      status: 500,
-    });
+    console.error("Database insert error:", error);
+    return new Response(
+      JSON.stringify({ message: `Submission failed: ${error.message}` }),
+      { status: 500 },
+    );
   }
 }
