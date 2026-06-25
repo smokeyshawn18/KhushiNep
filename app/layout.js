@@ -121,6 +121,13 @@ export default function RootLayout({ children }) {
         >
           {JSON.stringify(orgSchema)}
         </Script>
+
+        <Script
+          async
+          strategy="afterInteractive"
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8971104795657349"
+          crossOrigin="anonymous"
+        />
       </body>
     </html>
   );
