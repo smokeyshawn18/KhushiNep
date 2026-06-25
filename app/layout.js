@@ -17,6 +17,7 @@ import {
   EMAIL,
   ADDRESS,
 } from "@/app/seo";
+import Head from "next/head";
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -94,6 +95,10 @@ export default function RootLayout({ children }) {
 
   return (
     <html lang="en">
+      <Head>
+        <meta name="google-adsense-account" content="ca-pub-8971104795657349" />
+      </Head>
+
       <body>
         <Navbar />
         {children}
@@ -121,13 +126,6 @@ export default function RootLayout({ children }) {
         >
           {JSON.stringify(orgSchema)}
         </Script>
-
-        <Script
-          async
-          strategy="afterInteractive"
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8971104795657349"
-          crossorigin="anonymous"
-        />
       </body>
     </html>
   );
